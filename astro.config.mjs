@@ -23,6 +23,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', slug: 'learning-components' },
 						{ label: 'Four Forces', slug: 'learning-components/four-forces' },
+						{ label: 'Climb Performance', slug: 'learning-components/climb-performance' },
 					],
 				},
 			],
