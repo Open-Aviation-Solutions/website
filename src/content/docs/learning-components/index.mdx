@@ -3,6 +3,10 @@ title: Learning components
 description: Free, interactive browser-based tools that bring aviation training concepts to life — for instructors and trainees.
 ---
 
+import { Image } from 'astro:assets';
+import fourForcesImg from '../../../assets/four-forces-screenshot.png';
+import climbPerfImg from '../../../assets/climb-performance-screenshot.png';
+
 These are interactive training tools that run directly in your browser — no installation needed. Each one visualises an aviation concept so you can explore it hands-on, whether you're an instructor preparing a ground briefing or a trainee working through theory at home.
 
 All tools on this site are free to use and free to embed in your own training materials. Any improvements made to them must be shared back with the community.
@@ -11,10 +15,30 @@ All tools on this site are free to use and free to embed in your own training ma
 
 ## Four Forces
 
-![Four Forces — a 3D aircraft with labelled arrows showing lift, weight, thrust and drag](../../../assets/four-forces-screenshot.png)
+<a href="/learning-components/four-forces/">
+  <Image src={fourForcesImg} alt="Four Forces — a 3D aircraft with labelled arrows showing lift, weight, thrust and drag" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+</a>
 
 An interactive 3D view of the four forces acting on an aircraft in flight. Adjust the throttle and pitch attitude using on-screen sliders and watch the lift, weight, thrust, and drag arrows respond in real time — showing how each force changes with speed and attitude.
 
 Useful for demonstrating how an aircraft climbs, descends, or holds level flight, and for exploring what happens when the balance of forces breaks down.
 
 [Explore Four Forces →](/learning-components/four-forces/)
+
+<div style="clear: both;" />
+
+---
+
+## Climb Performance
+
+<a href="/learning-components/climb-performance/">
+  <Image src={climbPerfImg} alt="Climb Performance — two charts showing thrust and power available versus required across the flight envelope" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+</a>
+
+Two interactive charts showing thrust and power available versus required across the flight envelope. Drag the cursor to any airspeed and see how much excess thrust or power is available for climbing, with markers at Vx (best angle) and Vy (best rate).
+
+Useful for explaining why best angle and best rate are different speeds, and for building intuition about how climb performance changes across the speed range.
+
+[Explore Climb Performance →](/learning-components/climb-performance/)
+
+<div style="clear: both;" />
