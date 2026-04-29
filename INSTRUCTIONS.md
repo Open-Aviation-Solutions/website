@@ -1,8 +1,4 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## What this is
+# Open Aviation Solutions website
 
 Source for [openaviation.solutions](https://openaviation.solutions) — a docs site for Australian flight training resources. Built with [Astro](https://astro.build) + [Starlight](https://starlight.astro.build), deployed to GitHub Pages on push to `main`.
 
@@ -31,9 +27,13 @@ The sidebar is defined manually in `astro.config.mjs` — adding a new page requ
 
 Learning components come from the `@open-aviation-solutions/components` npm package (web components / custom elements). `three` is a required peer dependency. Each component is wrapped in a small `.astro` file under `src/components/` which imports the package via a `<script>` tag (bundled client-side by Astro/Vite) and sets default attributes like `model-path` and `height`. MDX pages import these wrappers directly.
 
+## Voice and transparency
+
+This site represents a one-person operation. Use "I" rather than "we" when referring to the company or its work — transparency about the solo nature of the project is core to the ethos. "We" is fine when referring to the broader community of pilots or learners (e.g. "we all want safer skies").
+
 ## Commit style
 
-Do **not** add `Co-Authored-By` trailers. The developer is solely responsible for authorship of all commits, regardless of tooling used.
+Do not add `Co-Authored-By` trailers. The developer is solely responsible for authorship of all commits, regardless of tooling used.
 
 ## Deployment
 
