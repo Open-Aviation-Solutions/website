@@ -7,7 +7,12 @@ export default defineConfig({
 	site: 'https://openaviation.solutions',
 	integrations: [
 		starlight({
+			customCss: ['./src/styles/custom.css'],
 			title: 'Open Aviation Solutions',
+			components: {
+				SiteTitle: './src/components/SiteTitle.astro',
+				Hero: './src/components/Hero.astro',
+			},
 			description:
 				'Improving pilot safety with open learning and training resources.',
 			social: [

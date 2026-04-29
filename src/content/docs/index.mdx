@@ -3,6 +3,7 @@ title: Open Aviation Solutions
 description: Improving pilot safety with open learning and training resources.
 template: splash
 hero:
+  title: 'Open Aviation <span style="color:var(--sl-color-accent-high)">Solutions</span>'
   tagline: Improving pilot safety with open learning and training resources.
   actions:
     - text: Explore the learning components
@@ -11,6 +12,7 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import InfoCard from '../../components/InfoCard.astro';
 
 ## What we're building
 
@@ -37,16 +39,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 	</Card>
 </CardGrid>
 
-## Who this is for
-
+<InfoCard title="Who this is for">
 Australian Part 141/142 flight training organisations and specifically **pilot
 instructors** or **pilots training to become instructors**, as well as
 **self-directed learners** who want affordable, transparent, improvable
 training tools.
+</InfoCard>
 
-## Why
-
+<InfoCard title="Why">
 We all want to **maximise the efficiency of our learning** (and
 the time we spend preparing for learning) so that we can be **safer pilots spending
 more time doing what we love**.
+</InfoCard>
 
