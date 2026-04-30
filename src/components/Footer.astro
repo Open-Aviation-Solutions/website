@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="footer-inner">
+		<p class="copyright">
+			© {year} Michael Nelson, trading as Open Aviation Solutions · ABN 96 917 566 113
+		</p>
+		<nav class="footer-nav" aria-label="Site footer">
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+			<a href="/accessibility/">Accessibility</a>
+			<a href="/privacy/">Privacy</a>
+			<a href="/terms/">Terms</a>
+			<a href="/licensing/">Licensing</a>
+			<a href="https://github.com/open-aviation-solutions" class="external-link">GitHub ↗</a>
+		</nav>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--sl-color-hairline);
+		padding: 1.5rem var(--sl-content-pad-x);
+		margin-top: 2rem;
+	}
+
+	.footer-inner {
+		max-width: var(--sl-content-width);
+		margin-inline: auto;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem 2rem;
+	}
+
+	.copyright {
+		margin: 0;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+	}
+
+	.footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.25rem;
+	}
+
+	.footer-nav a {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+	}
+
+	.footer-nav a:hover {
+		color: var(--sl-color-accent-high);
+		text-decoration: underline;
+	}
+</style>
