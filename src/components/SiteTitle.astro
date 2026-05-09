@@ -1,10 +1,12 @@
 ---
 import logoUrl from '../assets/logo-mark.svg?url';
+import logoDarkUrl from '../assets/logo-mark-dark.svg?url';
 const { siteTitleHref } = Astro.locals.starlightRoute;
 ---
 
 <a href={siteTitleHref} class="site-title sl-flex">
-	<img src={logoUrl} alt="" aria-hidden="true" class="logo-mark" />
+	<img src={logoUrl} alt="" aria-hidden="true" class="logo-mark dark:sl-hidden" />
+	<img src={logoDarkUrl} alt="" aria-hidden="true" class="logo-mark light:sl-hidden" />
 	<span translate="no" class="title-text">
 		Open Aviation <span class="accent">Solutions</span>
 	</span>

@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import DraftContentNotice from 'virtual:starlight/components/DraftContentNotice';
 import { LinkButton } from '@astrojs/starlight/components';
 import logoMarkUrl from '../assets/logo-mark.svg?url';
+import logoMarkDarkUrl from '../assets/logo-mark-dark.svg?url';
 
 const { data } = Astro.locals.starlightRoute.entry;
 const { title = data.title, tagline, image, actions = [] } = data.hero || {};
@@ -41,7 +42,8 @@ if (image) {
 	<div class="sl-flex stack">
 		<div class="sl-flex copy">
 			<div class="sl-flex title-row">
-				<img src={logoMarkUrl} alt="" aria-hidden="true" class="title-logo" />
+				<img src={logoMarkUrl} alt="" aria-hidden="true" class="title-logo dark:sl-hidden" />
+				<img src={logoMarkDarkUrl} alt="" aria-hidden="true" class="title-logo light:sl-hidden" />
 				<h1 id="_top" data-page-title set:html={title} />
 			</div>
 			{data.draft && <DraftContentNotice />}
