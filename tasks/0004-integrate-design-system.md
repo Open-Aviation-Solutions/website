@@ -1,6 +1,6 @@
 # Integrate design system into website
 
-**Status:** proposal
+**Status:** done
 
 ## Purpose
 
@@ -68,9 +68,7 @@ See `../open-aviation-lessons/themes/open-aviation-solutions/style.css` for the 
 
 The design system says: for icons beyond Starlight's internal set, use [Lucide](https://lucide.dev) line icons (1.5–2px stroke, square caps, no fills, 14–20px body / up to 28px nav). No emoji, no Unicode pictographs.
 
-If/when new icons are needed, use the Lucide CDN or install `lucide` as a dev dependency rather than reaching for an alternative library or emoji.
-
-Document the chosen approach here once decided (CDN vs. npm install).
+**Chosen approach: npm install `lucide` as a dev dependency** when icons are first needed. This is consistent with self-hosting everything else (Barlow via `@fontsource/barlow`), avoids a third-party CDN request, and lets Astro/Vite tree-shake to only the icons actually used. Import individual SVG icons via `lucide` and render them inline or as `<img>` with explicit dimensions.
 
 ### 7. Voice and tone audit
 

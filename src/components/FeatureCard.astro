@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+}
+
+const { title, href } = Astro.props;
+---
+
+<article class:list={['feature-card', { linked: !!href }]}>
+  {href && <a href={href} aria-label={title} class="card-overlay-link"></a>}
+  <p class="title">{title}</p>
+  <div class="body"><slot /></div>
+</article>
+
+<style>
+  .feature-card {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background-color: var(--sl-color-black);
+    padding: clamp(1rem, calc(0.125rem + 3vw), 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, calc(0.125rem + 1vw), 1rem);
+    position: relative;
+    transition: border-color 120ms;
+  }
+
+  .feature-card.linked:hover {
+    border-color: var(--sl-color-accent);
+  }
+
+  /* Stretches the <a> to cover the whole card; inner links remain above it via z-index */
+  .card-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: var(--sl-text-h4);
+    color: var(--sl-color-white);
+    line-height: var(--sl-line-height-headings);
+    margin: 0;
+  }
+
+  .body {
+    margin: 0;
+    font-size: clamp(var(--sl-text-sm), calc(0.5rem + 1vw), var(--sl-text-body));
+  }
+</style>

@@ -25,13 +25,16 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: 'Learning components',
+					label: 'Open Aviation Components',
 					items: [
-						{ label: 'Overview', slug: 'learning-components' },
-						{ label: 'Four Forces', slug: 'learning-components/four-forces' },
-						{ label: 'Climb Performance', slug: 'learning-components/climb-performance' },
+						{ label: 'Overview', slug: 'open-aviation-components' },
+						{ label: 'Four Forces', slug: 'open-aviation-components/four-forces' },
+						{ label: 'Climb Performance', slug: 'open-aviation-components/climb-performance' },
 					],
 				},
+				{ label: 'Open Aviation Briefings', slug: 'open-aviation-briefings' },
+				{ label: 'Open Aviation Software', slug: 'open-aviation-software' },
+				{ label: 'VR Simulator Setups', slug: 'vr-simulator-setups' },
 				{
 					label: 'About',
 					items: [

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.38.3",
+    "@fontsource/barlow": "^5.2.8",
     "@open-aviation-solutions/components": "^0.1.1",
     "astro": "^6.0.1",
     "sharp": "^0.34.2",

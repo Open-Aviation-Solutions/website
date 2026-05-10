@@ -1,11 +1,37 @@
-/* src/styles/custom.css */
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/barlow-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/barlow-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/barlow-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/barlow-latin-700-normal.woff2') format('woff2');
+}
 
 :root {
   --sl-font: 'Barlow', 'Helvetica Neue', sans-serif;
   --sl-color-accent-low:  #0a2050;
   --sl-color-accent:      #1a5fb4;
   --sl-color-accent-high: #4a8be8;
+  --sl-border-radius: 6px;
 }
 
 :root[data-theme='dark'] {
@@ -35,4 +61,18 @@
   --sl-color-gray-5:      #d0d0c8;
   --sl-color-gray-6:      #e8e8e2;
   --sl-color-gray-7:      #f0f0eb;
+}
+
+/* Transition timing: 120ms for interactive elements */
+a, button {
+  transition: color 120ms, background-color 120ms, border-color 120ms;
+}
+
+/* Link hover colours per design system */
+:root[data-theme='light'] .sl-markdown-content a:hover:not(:where(.not-content *)) {
+  color: #114478;
+}
+
+:root[data-theme='dark'] .sl-markdown-content a:hover:not(:where(.not-content *)) {
+  color: #6aabff;
 }
