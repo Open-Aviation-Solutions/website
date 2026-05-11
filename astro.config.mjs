@@ -28,8 +28,10 @@ export default defineConfig({
 					label: 'Open Aviation Components',
 					items: [
 						{ label: 'Overview', slug: 'open-aviation-components' },
-						{ label: 'Four Forces', slug: 'open-aviation-components/four-forces' },
 						{ label: 'Climb Performance', slug: 'open-aviation-components/climb-performance' },
+						{ label: 'Flight Path Overview', slug: 'open-aviation-components/flight-path-overview' },
+						{ label: 'Four Forces', slug: 'open-aviation-components/four-forces' },
+						{ label: 'Pitch Roll Yaw', slug: 'open-aviation-components/pitch-roll-yaw' },
 					],
 				},
 				{ label: 'Open Aviation Briefings', slug: 'open-aviation-briefings' },

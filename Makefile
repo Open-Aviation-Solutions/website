@@ -1,9 +1,9 @@
-.PHONY: help dev build preview install
+.PHONY: help dev build preview install test
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-12s %s\n", $$1, $$2}'
 
-node_modules: package-lock.json
+node_modules: package.json package-lock.json
 	npm install
 	@touch node_modules
 
@@ -17,3 +17,6 @@ build: node_modules ## Build site to ./dist/
 
 preview: build ## Preview the built site locally
 	npm run preview
+
+test: node_modules ## Run e2e tests (requires Chromium — install with: npx playwright install --with-deps chromium)
+	npm test

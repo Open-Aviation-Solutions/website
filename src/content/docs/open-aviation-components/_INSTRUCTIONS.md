@@ -12,20 +12,21 @@ Technical instructions for embedding these components in your own site are on th
 
 Each component page follows this order:
 1. Frontmatter (`title`, `description`)
-2. One-paragraph prose intro — what the component shows
+2. One or two paragraphs explaining why this tool helps a learning pilot (no heading — leads directly into the component)
 3. Component import and embed (wrapper from `src/components/`)
-4. Short explanation of the interactive controls
-5. `## For instructors` — ground briefing use cases
-6. `## For trainees` — self-study exercises
-7. Footer link to the source docs at open-aviation-solutions.github.io/open-aviation-components/
+4. `## Description` — one-paragraph prose intro explaining what the component shows
+5. Short explanation of the interactive controls
+6. `## For instructors` — ground briefing use cases
+7. `## For trainees` — self-study exercises
+8. Footer link to the source docs at open-aviation-solutions.github.io/open-aviation-components/
 
 ## Index page
 
 New components need:
-- An entry in `index.mdx`: screenshot (floated right, 50% width) wrapped in a link, short description, "Explore X →" link
-- A sidebar entry in `astro.config.mjs` under Learning components
+- An entry in `index.mdx`: screenshot (floated right, 50% width) wrapped in a link, short description, "Explore X →" link — in alphabetical order matching the components docs site
+- A sidebar entry in `astro.config.mjs` under Learning components — also in alphabetical order
 
-Screenshots go in `src/assets/` named `{component-name}-screenshot.png`.
+Screenshots link to `https://open-aviation-solutions.github.io/open-aviation-components/screenshots/{component-name}.png` using a plain `<img>` tag (not the Astro `<Image>` component).
 
 ## Note on this file's name
 
