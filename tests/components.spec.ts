@@ -11,11 +11,12 @@ for (const { page: path, tag } of components) {
   test(`${tag} is registered and present on ${path}`, async ({ page }) => {
     await page.goto(path);
 
-    const registered = await page.evaluate(
+    // waitForFunction works across navigations, handling Vite's HMR full-reload
+    // that fires after the first page is compiled in the dev server.
+    await page.waitForFunction(
       (t) => customElements.get(t) !== undefined,
       tag,
     );
-    expect(registered, `<${tag}> was not registered — script failed to load`).toBe(true);
 
     await expect(page.locator(tag)).toBeVisible();
   });
