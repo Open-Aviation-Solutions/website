@@ -3,20 +3,48 @@ title: Learning components
 description: Free, interactive browser-based tools that bring aviation training concepts to life — for instructors and trainees.
 ---
 
-import { Image } from 'astro:assets';
-import fourForcesImg from '../../../assets/four-forces-screenshot.png';
-import climbPerfImg from '../../../assets/climb-performance-screenshot.png';
-
 These are interactive training tools that run directly in your browser — no installation needed. Each one visualises an aviation concept so you can explore it hands-on, whether you're an instructor preparing a ground briefing or a trainee working through theory at home.
 
 All tools on this site are free to use and free to embed in your own training materials. Any improvements made to them must be shared back with the community.
 
 ---
 
+## Climb Performance
+
+<a href="/open-aviation-components/climb-performance/">
+  <img src="https://open-aviation-solutions.github.io/open-aviation-components/screenshots/climb-performance.png" alt="Climb Performance — two charts showing thrust and power available versus required across the flight envelope" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+</a>
+
+Two interactive charts showing thrust and power available versus required across the flight envelope. Drag the cursor to any airspeed and see how much excess thrust or power is available for climbing, with markers at Vx (best angle) and Vy (best rate).
+
+Useful for explaining why best angle and best rate are different speeds, and for building intuition about how climb performance changes across the speed range.
+
+[Explore Climb Performance →](/open-aviation-components/climb-performance/)
+
+<div style="clear: both;" />
+
+---
+
+## Flight Path Overview
+
+<a href="/open-aviation-components/flight-path-overview/">
+  <img src="https://open-aviation-solutions.github.io/open-aviation-components/screenshots/flight-path-overview.png" alt="Flight Path Overview — a dashed flight path with numbered lesson topic waypoints between two runways and an animated aircraft marker" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+</a>
+
+A visual agenda for ground briefings. Lesson topics appear as numbered waypoints on a dashed flight path between two runways. As the briefing progresses, an aircraft marker advances through the topics and a variance indicator shows whether you are running to time.
+
+Useful for setting student expectations at the start of any lesson, staying on schedule, and as a visual element on a projector or second screen.
+
+[Explore Flight Path Overview →](/open-aviation-components/flight-path-overview/)
+
+<div style="clear: both;" />
+
+---
+
 ## Four Forces
 
 <a href="/open-aviation-components/four-forces/">
-  <Image src={fourForcesImg} alt="Four Forces — a 3D aircraft with labelled arrows showing lift, weight, thrust and drag" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+  <img src="https://open-aviation-solutions.github.io/open-aviation-components/screenshots/four-forces.png" alt="Four Forces — a 3D aircraft with labelled arrows showing lift, weight, thrust and drag" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
 </a>
 
 An interactive 3D view of the four forces acting on an aircraft in flight. Adjust the throttle and pitch attitude using on-screen sliders and watch the lift, weight, thrust, and drag arrows respond in real time — showing how each force changes with speed and attitude.
@@ -29,16 +57,16 @@ Useful for demonstrating how an aircraft climbs, descends, or holds level flight
 
 ---
 
-## Climb Performance
+## Pitch Roll Yaw
 
-<a href="/open-aviation-components/climb-performance/">
-  <Image src={climbPerfImg} alt="Climb Performance — two charts showing thrust and power available versus required across the flight envelope" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
+<a href="/open-aviation-components/pitch-roll-yaw/">
+  <img src="https://open-aviation-solutions.github.io/open-aviation-components/screenshots/pitch-roll-yaw.png" alt="Pitch Roll Yaw — a 3D aircraft with sliders for pitch, roll, and yaw showing rotation about each axis" style="float: right; width: 50%; margin: 0 0 1rem 1.5rem;" />
 </a>
 
-Two interactive charts showing thrust and power available versus required across the flight envelope. Drag the cursor to any airspeed and see how much excess thrust or power is available for climbing, with markers at Vx (best angle) and Vy (best rate).
+An interactive 3D viewer for exploring the three axes of flight. Three sliders rotate the aircraft about the lateral (pitch), longitudinal (roll), and normal (yaw) axes. A waggle button animates a random axis for students to identify — useful for quick comprehension checks during ground briefings.
 
-Useful for explaining why best angle and best rate are different speeds, and for building intuition about how climb performance changes across the speed range.
+Suited to Effects of Controls lessons and any session where students need to connect the terminology with the physical motion before they fly.
 
-[Explore Climb Performance →](/open-aviation-components/climb-performance/)
+[Explore Pitch Roll Yaw →](/open-aviation-components/pitch-roll-yaw/)
 
 <div style="clear: both;" />

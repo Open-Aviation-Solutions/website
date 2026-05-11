@@ -1,0 +1,22 @@
+---
+---
+<flight-path-overview
+  id="fpo-demo"
+  controls
+  arrival-label="Back at Base"
+  style="border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; display: block;"
+></flight-path-overview>
+
+<script>
+  import '@open-aviation-solutions/components/define';
+
+  const fpo = document.getElementById('fpo-demo') as HTMLElement & { topics: unknown[] };
+  fpo.topics = [
+    { label: 'Overview', time: 1 },
+    { label: "Risk Analysis\nI'M SAFE & PAVE", time: 3 },
+    { label: '"See and Avoid"\nOur joint responsibility', time: 2 },
+    { label: 'Who has Control', time: 2 },
+    { label: "Today's Flight", time: 2 },
+    { label: 'Recap and Fly', time: 2 },
+  ];
+</script>
