@@ -1,5 +1,5 @@
 ---
-title: Flight Path Overview
+title: Briefing Overview
 description: A visual flight plan timeline showing lesson topics as waypoints along a dashed flight path — with optional timing tracking to keep ground briefings on schedule.
 ---
 
@@ -7,13 +7,13 @@ Ground briefings are where the lesson is set up, and their quality directly infl
 
 A visible agenda changes both dynamics. Students who can see the shape of the lesson before it starts arrive with accurate expectations — they know how many topics there are, roughly how long each takes, and where the flight fits in. That reduces the cognitive load of simply *following the briefing*, leaving more capacity for the content itself. For instructors, actively tracking variance builds the pacing habit that separates good briefings from rushed ones.
 
-import FlightPathOverview from '../../../components/FlightPathOverview.astro';
+import BriefingOverview from '../../../components/BriefingOverview.astro';
 
-<FlightPathOverview />
+<BriefingOverview />
 
 ## Description
 
-The Flight Path Overview shows a lesson ground briefing as a series of numbered topic bubbles on a dashed flight path between two runways. An animated aircraft marker moves through the topics as the briefing progresses. When timing is started, the component tracks how long each topic actually takes and shows a variance against the plan.
+The Briefing Overview shows a lesson ground briefing as a series of numbered topic bubbles on a dashed flight path between two runways. An animated aircraft marker moves through the topics as the briefing progresses. When timing is started, the component tracks how long each topic actually takes and shows a variance against the plan.
 
 The built-in controls let you run the overview interactively:
 - **Start flight** (lever icon) — starts the timer at departure

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const components: { page: string; tag: string }[] = [
   { page: '/open-aviation-components/climb-performance/', tag: 'climb-performance' },
-  { page: '/open-aviation-components/flight-path-overview/', tag: 'flight-path-overview' },
+  { page: '/open-aviation-components/briefing-overview/', tag: 'flight-path-overview' },
   { page: '/open-aviation-components/four-forces/', tag: 'four-forces' },
   { page: '/open-aviation-components/pitch-roll-yaw/', tag: 'pitch-roll-yaw' },
 ];
