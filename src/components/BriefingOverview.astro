@@ -1,16 +1,16 @@
 ---
 ---
-<flight-path-overview
-  id="fpo-demo"
+<briefing-overview
+  id="briefing-overview-demo"
   controls
   arrival-label="Back at Base"
   style="border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; display: block;"
-></flight-path-overview>
+></briefing-overview>
 
 <script>
   import '@open-aviation-solutions/components/define';
 
-  const fpo = document.getElementById('fpo-demo') as HTMLElement & { topics: unknown[] };
+  const fpo = document.getElementById('briefing-overview-demo') as HTMLElement & { topics: unknown[] };
   fpo.topics = [
     { label: 'Overview', time: 1 },
     { label: "Risk Analysis\nI'M SAFE & PAVE", time: 3 },
