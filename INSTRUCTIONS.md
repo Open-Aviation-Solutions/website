@@ -5,13 +5,19 @@ Source for [openaviation.solutions](https://openaviation.solutions) — a docs s
 ## Commands
 
 ```
-npm install       # install deps
-npm run dev       # dev server at localhost:4321
-npm run build     # build to ./dist/
-npm run preview   # preview the built site locally
+make install      # install deps
+make dev          # dev server at localhost:4321
+make build        # build to ./dist/
+make preview      # preview the built site locally
+make test         # run Playwright e2e tests (CI only — see memory)
+make lint-prose   # spell- and style-check content with Vale
+make check        # run all checks (currently lint-prose)
 ```
 
-There are no tests or linting scripts configured.
+Prose linting uses [Vale](https://vale.sh) with the `en_AU` Hunspell dictionary
+and a custom aviation vocabulary at `.vale/styles/config/vocabularies/Aviation/accept.txt`.
+Add new domain terms (acronyms, aircraft types, proper names) there rather than
+disabling rules. The same setup runs in CI on every push and PR.
 
 ## Architecture
 

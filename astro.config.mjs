@@ -28,6 +28,7 @@ export default defineConfig({
 					label: 'Open Aviation Components',
 					items: [
 						{ label: 'Overview', slug: 'open-aviation-components' },
+						{ label: 'Aerofoil Dynamics', slug: 'open-aviation-components/aerofoil-dynamics' },
 						{ label: 'Briefing Overview', slug: 'open-aviation-components/briefing-overview' },
 						{ label: 'Climb Performance', slug: 'open-aviation-components/climb-performance' },
 						{ label: 'Four Forces', slug: 'open-aviation-components/four-forces' },
