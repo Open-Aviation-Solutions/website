@@ -1,6 +1,6 @@
 # Add SEO basics and social-card metadata
 
-**Status:** proposal
+**Status:** implemented — pending post-deploy link-preview verification
 
 ## Purpose
 
