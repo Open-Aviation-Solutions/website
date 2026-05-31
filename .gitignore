@@ -20,6 +20,10 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# vim swap files
+*.swp
+*.swo
+
 # Playwright
 test-results/
 playwright-report/

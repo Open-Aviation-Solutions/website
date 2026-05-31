@@ -1,10 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import remarkSmartypants from 'remark-smartypants';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://openaviation.solutions',
+	markdown: {
+		remarkPlugins: [remarkSmartypants],
+	},
 	integrations: [
 		starlight({
 			customCss: ['./src/styles/custom.css'],
