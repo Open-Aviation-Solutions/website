@@ -29,10 +29,16 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - name: Install Playwright system deps
+        run: npx playwright install-deps chromium
         env:
           DEBIAN_FRONTEND: noninteractive
+        timeout-minutes: 5
+      - name: Install Playwright browser
+        run: npx playwright install chromium
+        timeout-minutes: 5
       - run: npm test
+        timeout-minutes: 10
 
   lint-prose:
     runs-on: ubuntu-latest
