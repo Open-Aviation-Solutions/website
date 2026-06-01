@@ -22,6 +22,8 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -29,16 +31,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - name: Install Playwright system deps
-        run: npx playwright install-deps chromium
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        timeout-minutes: 5
-      - name: Install Playwright browser
-        run: npx playwright install chromium
-        timeout-minutes: 5
       - run: npm test
         timeout-minutes: 10
+        env:
+          HOME: /root
 
   lint-prose:
     runs-on: ubuntu-latest
