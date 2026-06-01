@@ -32,6 +32,14 @@ export default defineConfig({
 					attrs: { type: 'application/ld+json' },
 					content: JSON.stringify(organizationJsonLd),
 				},
+				{
+					tag: 'script',
+					attrs: {
+						defer: true,
+						src: 'https://static.cloudflareinsights.com/beacon.min.js',
+						'data-cf-beacon': '{"token": "f025be2f23ce4877aa14be3949bb419b"}',
+					},
+				},
 			],
 			social: [
 				{
