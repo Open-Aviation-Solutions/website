@@ -50,4 +50,10 @@ const { title, href } = Astro.props;
     margin: 0;
     font-size: clamp(var(--sl-text-sm), calc(0.5rem + 1vw), var(--sl-text-body));
   }
+
+  /* Keep inner links clickable above the card-overlay-link */
+  .body :global(a) {
+    position: relative;
+    z-index: 1;
+  }
 </style>

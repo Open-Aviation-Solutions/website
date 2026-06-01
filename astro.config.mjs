@@ -2,24 +2,37 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import remarkSmartypants from 'remark-smartypants';
+import { siteInfo, organizationJsonLd } from './src/site-info';
+
+const ogImageUrl = `${siteInfo.url}${siteInfo.ogImage}`;
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://openaviation.solutions',
+	site: siteInfo.url,
 	markdown: {
 		remarkPlugins: [remarkSmartypants],
 	},
 	integrations: [
 		starlight({
 			customCss: ['./src/styles/custom.css'],
-			title: 'Open Aviation Solutions',
+			title: siteInfo.siteName,
 			components: {
 				SiteTitle: './src/components/SiteTitle.astro',
 				Hero: './src/components/Hero.astro',
 				Footer: './src/components/Footer.astro',
 			},
-			description:
-				'Improving pilot safety with open learning and training resources.',
+			description: siteInfo.tagline,
+			head: [
+				{ tag: 'meta', attrs: { property: 'og:image', content: ogImageUrl } },
+				{ tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+				{ tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+				{ tag: 'meta', attrs: { name: 'twitter:image', content: ogImageUrl } },
+				{
+					tag: 'script',
+					attrs: { type: 'application/ld+json' },
+					content: JSON.stringify(organizationJsonLd),
+				},
+			],
 			social: [
 				{
 					icon: 'github',

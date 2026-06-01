@@ -1,6 +1,6 @@
 # Add the standard business-website content the site is missing
 
-**Status:** ready
+**Status:** completed
 
 ## Purpose
 

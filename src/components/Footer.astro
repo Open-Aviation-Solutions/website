@@ -1,11 +1,12 @@
 ---
+import { siteInfo } from '../site-info';
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<div class="footer-inner">
 		<p class="copyright">
-			© {year} Michael Nelson, trading as Open Aviation Solutions · ABN 96 917 566 113
+			© {year} {siteInfo.owner}, trading as {siteInfo.registeredBusinessName} · ABN {siteInfo.abn}
 		</p>
 		<nav class="footer-nav" aria-label="Site footer">
 			<a href="/about/">About</a>
@@ -14,7 +15,7 @@ const year = new Date().getFullYear();
 			<a href="/privacy/">Privacy</a>
 			<a href="/terms/">Terms</a>
 			<a href="/licensing/">Licensing</a>
-			<a href="https://github.com/open-aviation-solutions" class="external-link">GitHub ↗</a>
+			<a href={siteInfo.githubOrg} class="external-link">GitHub ↗</a>
 		</nav>
 	</div>
 </footer>
