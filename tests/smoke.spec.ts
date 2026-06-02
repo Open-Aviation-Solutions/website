@@ -19,12 +19,21 @@ test('components overview links out to the external docs site', async ({ page })
   ).toBeVisible();
 
   // Links point at the external components docs site, and no interactive
-  // custom elements are embedded on this page any more.
+  // custom elements are embedded on this page any more. Assert the links are
+  // present (attached) rather than visible — some wrap external screenshots
+  // that don't load in CI, which would collapse the anchor to zero size.
   await expect(
-    page
-      .locator(
-        'a[href^="https://open-aviation-solutions.github.io/open-aviation-components/"]',
-      )
-      .first(),
-  ).toBeVisible();
+    page.locator(
+      'a[href^="https://open-aviation-solutions.github.io/open-aviation-components/"]',
+    ),
+  ).not.toHaveCount(0);
+
+  // The visible "Four Forces component" text link confirms the out-link to the
+  // docs site renders for the reader.
+  await expect(
+    page.getByRole('link', { name: 'Four Forces component' }),
+  ).toHaveAttribute(
+    'href',
+    'https://open-aviation-solutions.github.io/open-aviation-components/four-forces/',
+  );
 });
