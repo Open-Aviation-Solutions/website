@@ -1,0 +1,1 @@
+While editing the components, I thought it'd be useful to have a short, 5 page briefing which demonstrated both integrating components as well as using different themes. Just a quick visual example of what's possible so people can play with it and discover for themselves.

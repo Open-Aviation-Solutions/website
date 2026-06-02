@@ -1,6 +1,6 @@
 # Add site analytics
 
-**Status:** proposal
+**Status:** completed
 
 ## Purpose
 

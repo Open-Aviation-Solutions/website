@@ -13,6 +13,7 @@ QNH
 RPL
 TAS
 VFR
+Vmd
 Vne
 Vso
 Vx
@@ -51,8 +52,11 @@ walkthrough
 (?i)astro
 CLI
 composable
+draggable
+embeddable
 (?i)frontmatter
 Marp
+npm
 Slidev
 (?i)starlight
 
