@@ -13,10 +13,8 @@
   "dependencies": {
     "@astrojs/starlight": "^0.38.3",
     "@fontsource/barlow": "^5.2.8",
-    "@open-aviation-solutions/components": "^0.1.4",
     "astro": "^6.0.1",
-    "sharp": "^0.34.2",
-    "three": "^0.184.0"
+    "sharp": "^0.34.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

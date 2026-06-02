@@ -24,18 +24,20 @@ disabling rules. The same setup runs in CI on every push and PR.
 All content lives in `src/content/docs/` as `.mdx` files. Each file maps directly to a URL route — Starlight handles the layout, sidebar, and navigation automatically.
 
 - `src/content/docs/index.mdx` — homepage (uses `template: splash`)
-- `src/components/` — Astro wrapper components for learning tools (e.g. `FourForces.astro`)
-- `src/content/docs/learning-components/` — one page per learning component, plus an index
+- `src/components/` — Astro layout components (header, footer, hero, info cards)
+- `src/content/docs/open-aviation-components.mdx` — overview of the interactive learning components; per-component documentation lives on the [components docs site](https://open-aviation-solutions.github.io/open-aviation-components/)
 - `src/assets/` — images referenced from MDX content (Astro optimises these at build time)
 - `public/` — static files served verbatim (includes `CNAME` for the custom domain)
 
 The sidebar is defined manually in `astro.config.mjs` — adding a new page requires adding an entry there too.
 
-Learning components come from the `@open-aviation-solutions/components` npm package (web components / custom elements). `three` is a required peer dependency. Each component is wrapped in a small `.astro` file under `src/components/` which imports the package via a `<script>` tag (bundled client-side by Astro/Vite) and sets default attributes like `model-path` and `height`. MDX pages import these wrappers directly.
+The interactive learning components themselves are not embedded on this site. The website shows screenshots that link out to the [components docs site](https://open-aviation-solutions.github.io/open-aviation-components/), which carries both the non-technical guidance and the technical embedding reference for each component. This keeps the website free of the `@open-aviation-solutions/components` and `three` dependencies and avoids two sources of truth per component.
 
 ## Voice and transparency
 
 This site represents a one-person operation. Use "I" rather than "we" when referring to the company or its work — transparency about the solo nature of the project is core to the ethos. "We" is fine when referring to the broader community of pilots or learners (e.g. "we all want safer skies").
+
+Do not append Unicode arrows (→, ➜, etc.) to link text. Plain link text is sufficient; the underline already signals the link.
 
 ## Commit style
 
