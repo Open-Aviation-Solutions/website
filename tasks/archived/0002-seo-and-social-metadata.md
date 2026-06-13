@@ -1,6 +1,6 @@
 # Add SEO basics and social-card metadata
 
-**Status:** implemented — pending post-deploy link-preview verification
+**Status:** complete (2026-06-13) — all acceptance criteria met; archived
 
 ## Implementation notes (2026-06-13 audit)
 
@@ -36,9 +36,43 @@ more correct. Per Q8 this task deliberately relies on Starlight
 defaults; changing it would need a `Head.astro` override. Left as a
 possible future tweak.
 
-**Remaining:** the only open acceptance criterion is the post-deploy
-link-preview check on a real platform (Slack/card debugger), which
-needs the sitemap fix to be merged and deployed first.
+**Link-preview verification — done.** After deploy, the live card was
+confirmed via the Meta Sharing Debugger
+(https://developers.facebook.com/tools/debug/): the brand image renders
+and all OG/Twitter tags resolve correctly. The deployed apex was also
+checked directly: `robots.txt` advertises the sitemap,
+`sitemap-index.xml` returns 200 (11 URLs), and the homepage carries the
+`canonical` link and the `Organization` JSON-LD. This closes the last
+acceptance criterion.
+
+## Post-deploy: search-engine submission (operational, not code)
+
+The markup is sufficient for organic discovery, but the site should be
+registered with Google so indexing is faster and observable:
+
+- **Google Search Console** (https://search.google.com/search-console) —
+  add a **Domain property** for `openaviation.solutions` (verified with a
+  single DNS TXT record; covers apex + subdomains), then submit the
+  sitemap `https://openaviation.solutions/sitemap-index.xml` under
+  Sitemaps. Use URL Inspection → Request Indexing to nudge key pages.
+- **Bing Webmaster Tools** (optional) — import from Search Console and
+  submit the same sitemap; covers Bing + DuckDuckGo.
+- **Validate structured data** (optional) — run the homepage through the
+  Rich Results Test / schema.org validator to confirm the `Organization`
+  block parses.
+
+These are one-off account/DNS actions, so they live here as a checklist
+rather than as code work.
+
+## Out-of-scope follow-up: sub-site discoverability
+
+The two sub-sites on the shared `open-aviation-solutions.github.io`
+origin (briefings, components) now each emit their own sitemap and OG
+card, but their sitemaps are not yet advertised by any origin-root
+`robots.txt` (robots.txt is only honoured at the origin root, which no
+deploy currently owns). That gap is tracked in
+`../project-websites-root/tasks/0001-origin-root-landing-and-robots.md`,
+not here.
 
 ## Purpose
 
