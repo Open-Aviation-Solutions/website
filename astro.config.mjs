@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 import remarkSmartypants from 'remark-smartypants';
 import { siteInfo, organizationJsonLd } from './src/site-info';
 
@@ -62,5 +63,6 @@ export default defineConfig({
 				},
 			],
 		}),
+		sitemap(),
 	],
 });
