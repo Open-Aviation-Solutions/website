@@ -2,6 +2,44 @@
 
 **Status:** implemented — pending post-deploy link-preview verification
 
+## Implementation notes (2026-06-13 audit)
+
+Audited the live tree against the acceptance criteria and found one
+criterion that was never actually delivered, plus confirmed the rest:
+
+- **Sitemap regression — fixed.** `@astrojs/sitemap` was present in
+  `package-lock.json` and `node_modules`, and a stale
+  `dist/sitemap-index.xml` (1 Jun) existed, but the integration had
+  never been committed to `astro.config.mjs` *or* listed in
+  `package.json` dependencies. A clean build therefore produced **no**
+  sitemap, while the committed `public/robots.txt` advertised
+  `https://openaviation.solutions/sitemap-index.xml` — i.e. robots.txt
+  pointed crawlers at a file the deployed site did not generate. Fixed
+  by adding `@astrojs/sitemap` to `package.json` (`^3.7.2`, matching
+  the lockfile) and `sitemap()` to the integrations array. A clean
+  `make build` now logs `[@astrojs/sitemap] sitemap-index.xml created`
+  and emits `sitemap-index.xml` + `sitemap-0.xml` (11 URLs; the 404 is
+  correctly excluded).
+- **Per-page OG + Twitter tags — verified.** Built pages carry
+  per-page `og:title` / `og:description` from frontmatter (confirmed
+  on `/about/`), site-wide `og:image` (1200×630) + dimensions,
+  `og:type`, `twitter:card=summary_large_image`, and `twitter:image`.
+- **Organization JSON-LD — verified.** Rendered site-wide from the
+  shared `src/site-info.ts` constants module.
+- **Branded 404 — verified.** `src/content/docs/404.mdx` builds to
+  `dist/404.html` with the branded splash layout.
+- **Prose lint** (`make check`) passes: 0 errors/warnings.
+
+Minor observation, not actioned: Starlight emits `og:type=article`
+site-wide, including the splash homepage where `website` is marginally
+more correct. Per Q8 this task deliberately relies on Starlight
+defaults; changing it would need a `Head.astro` override. Left as a
+possible future tweak.
+
+**Remaining:** the only open acceptance criterion is the post-deploy
+link-preview check on a real platform (Slack/card debugger), which
+needs the sitemap fix to be merged and deployed first.
+
 ## Purpose
 
 Sibling to `0001-missing-business-website-info.md`. That task covers
