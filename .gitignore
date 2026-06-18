@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# dev-container image build stamp (see Makefile / Dockerfile)
+.image.stamp
 
 # dependencies
 node_modules/

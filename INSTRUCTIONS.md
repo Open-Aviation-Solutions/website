@@ -19,6 +19,33 @@ and a custom aviation vocabulary at `.vale/styles/config/vocabularies/Aviation/a
 Add new domain terms (acronyms, aircraft types, proper names) there rather than
 disabling rules. The same setup runs in CI on every push and PR.
 
+### Running without a local Node toolchain
+
+`make dev`, `make build` and `make check` work whether or not Node is installed
+on the host:
+
+- If `npm` is on `PATH`, the Make targets run it directly.
+- If not, they fall back to a container built from `Dockerfile` (Node 24 plus
+  the Vale prose linter and the en_AU Hunspell dictionary `make check` needs).
+  The image is built automatically on first use. Either `podman` or `docker` is
+  detected; override with `CONTAINER_RUNTIME=docker` or force the container path
+  with `make dev USE_CONTAINER=1`.
+
+The Vale version baked into the image (`VALE_VERSION` ARG in `Dockerfile`) is
+kept in sync with the `VALE_VERSION` env var in `.github/workflows/ci.yml`,
+which is how CI installs Vale on the runner directly.
+
+The container bind-mounts the repo (so edits and `node_modules` live on the
+host as usual) and forwards the Astro dev/preview server on port **4321**
+(the Makefile sets `ASTRO_HOST=1` so `astro.config.mjs` binds it to all
+interfaces). Rootless podman keeps host file ownership automatically; under
+rootful docker the container runs as the host user for the same reason. The
+image rebuilds automatically when the `Dockerfile` changes (tracked via a
+`.image.stamp` file); `touch Dockerfile` forces a rebuild.
+
+The image has no browser, so `make test` (Playwright) still needs a host Node
+toolchain with browsers installed, or the Playwright container CI uses.
+
 ## Architecture
 
 All content lives in `src/content/docs/` as `.mdx` files. Each file maps directly to a URL route — Starlight handles the layout, sidebar, and navigation automatically.
