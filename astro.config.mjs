@@ -10,6 +10,10 @@ const ogImageUrl = `${siteInfo.url}${siteInfo.ogImage}`;
 // https://astro.build/config
 export default defineConfig({
 	site: siteInfo.url,
+	// Bind the dev/preview server to all interfaces when running in the dev
+	// container (the Makefile sets ASTRO_HOST=1) so the port is reachable from
+	// the host. A normal `npm run dev` on the host keeps the default localhost bind.
+	server: process.env.ASTRO_HOST ? { host: true } : {},
 	markdown: {
 		remarkPlugins: [remarkSmartypants],
 	},

@@ -21,7 +21,9 @@ Vy
 
 # Aviation / navigation terms
 backpressure
+baulked
 carb
+flapless
 kneeboard
 (?i)pitot
 unstall
