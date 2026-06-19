@@ -22,10 +22,10 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     <text x="430" y="255" font-size="86" font-weight="700">Open Aviation</text>
     <text x="430" y="345" font-size="86" font-weight="700" fill="#4a8be8">Solutions</text>
     <text x="430" y="420" font-size="32" font-weight="400" fill="#b0bccf">
-      Improving pilot safety with open
+      Improving pilot safety with open training
     </text>
     <text x="430" y="460" font-size="32" font-weight="400" fill="#b0bccf">
-      learning and training resources.
+      resources and open-source tooling.
     </text>
   </g>
   <text x="90" y="585" font-family="'Barlow', 'Helvetica Neue', Arial, sans-serif"
