@@ -3,7 +3,7 @@
 export const siteInfo = {
 	url: 'https://openaviation.solutions',
 	siteName: 'Open Aviation Solutions',
-	tagline: 'Improving pilot safety with open learning and training resources.',
+	tagline: 'Improving pilot safety with open training resources and open-source tooling.',
 	legalName: 'Michael Andrew Nelson',
 	owner: 'Michael Nelson',
 	registeredBusinessName: 'Open Aviation Solutions',
