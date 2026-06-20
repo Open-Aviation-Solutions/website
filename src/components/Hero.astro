@@ -74,6 +74,10 @@ if (image) {
 			align-items: center;
 			gap: 1rem;
 			padding-bottom: 1rem;
+			/* Drives the logo (via em), the wordmark and the tagline together so
+			   the whole lockup scales as one unit. Stepped up for the wide-screen
+			   lockup in the media query below. */
+			--title-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
 		}
 
 		.hero > img,
@@ -104,7 +108,7 @@ if (image) {
 			align-items: center;
 			gap: 1rem;
 			/* set font-size so .title-logo can use em to match the h1 */
-			font-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
+			font-size: var(--title-size);
 		}
 
 		.title-logo {
@@ -123,8 +127,15 @@ if (image) {
 			margin-block: 0;
 		}
 
+		/* Force the wordmark to stack ("Open Aviation" / "Solutions") regardless
+		   of column width, so the lockup matches the social card and the tagline
+		   can be width-matched to it. The accent span carries "Solutions". */
+		.title-row h1 :global(span) {
+			display: block;
+		}
+
 		h1 {
-			font-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
+			font-size: var(--title-size);
 			line-height: var(--sl-line-height-headings);
 			font-weight: 600;
 			color: var(--sl-color-white);
@@ -146,6 +157,8 @@ if (image) {
 				grid-template-columns: 7fr 4fr;
 				gap: 3%;
 				padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
+				/* Larger lockup so the width-matched tagline lands around 18px. */
+				--title-size: clamp(4.25rem, calc(2rem + 3vw), 5rem);
 			}
 
 			.hero > img,
@@ -160,6 +173,20 @@ if (image) {
 
 			.copy {
 				align-items: flex-start;
+			}
+
+			.title-row {
+				gap: 0.3em;
+			}
+
+			/* One line spanning the lockup's left edge to the wordmark's right
+			   edge. Both strings are fixed, so their widths scale linearly with
+			   font size: tagline = 0.265 x title holds the match at every width.
+			   Keep the 0.265 ratio in step with scripts/generate-og-image.mjs. */
+			.tagline {
+				font-size: calc(0.265 * var(--title-size));
+				max-width: none;
+				white-space: nowrap;
 			}
 
 			.actions {
