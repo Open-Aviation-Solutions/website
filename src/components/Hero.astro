@@ -125,6 +125,10 @@ if (image) {
 
 		.title-row h1 {
 			margin-block: 0;
+			/* Keep the wordmark's two lines aligned to each other ("Solutions"
+			   under "Open Aviation") even where the hero is otherwise centred,
+			   e.g. on narrow screens. */
+			text-align: start;
 		}
 
 		/* Force the wordmark to stack ("Open Aviation" / "Solutions") regardless
@@ -181,10 +185,10 @@ if (image) {
 
 			/* One line spanning the lockup's left edge to the wordmark's right
 			   edge. Both strings are fixed, so their widths scale linearly with
-			   font size: tagline = 0.265 x title holds the match at every width.
-			   Keep the 0.265 ratio in step with scripts/generate-og-image.mjs. */
+			   font size: tagline = 0.254 x title holds the match at every width.
+			   Keep the 0.254 ratio in step with scripts/generate-og-image.mjs. */
 			.tagline {
-				font-size: calc(0.265 * var(--title-size));
+				font-size: calc(0.254 * var(--title-size));
 				max-width: none;
 				white-space: nowrap;
 			}
