@@ -74,6 +74,10 @@ if (image) {
 			align-items: center;
 			gap: 1rem;
 			padding-bottom: 1rem;
+			/* Drives the logo (via em), the wordmark and the tagline together so
+			   the whole lockup scales as one unit. Stepped up for the wide-screen
+			   lockup in the media query below. */
+			--title-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
 		}
 
 		.hero > img,
@@ -93,7 +97,10 @@ if (image) {
 		.copy {
 			flex-direction: column;
 			gap: 1rem;
-			align-items: center;
+			/* Left-align the lockup and tagline so they share one left edge (the
+			   logo/circle's), at every width — not just on the wide-screen
+			   layout below. */
+			align-items: flex-start;
 		}
 
 		.copy > * {
@@ -104,22 +111,38 @@ if (image) {
 			align-items: center;
 			gap: 1rem;
 			/* set font-size so .title-logo can use em to match the h1 */
-			font-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
+			font-size: var(--title-size);
 		}
 
 		.title-logo {
-			height: 2.05em;
+			/* The mark's ring spans the two-line wordmark: cap-top of "Open
+			   Aviation" sits on the ring's top edge, the "Solutions" baseline on
+			   its bottom edge. At the heading line-height (1.2) that span is
+			   ~1.92em; the small top nudge re-centres for the font's larger
+			   descent gap. Keep in step with scripts/generate-og-image.mjs. */
+			height: 1.92em;
 			width: auto;
 			flex-shrink: 0;
-			margin-top: 0.11em;
+			margin-top: 0.03em;
 		}
 
 		.title-row h1 {
 			margin-block: 0;
+			/* Keep the wordmark's two lines aligned to each other ("Solutions"
+			   under "Open Aviation") even where the hero is otherwise centred,
+			   e.g. on narrow screens. */
+			text-align: start;
+		}
+
+		/* Force the wordmark to stack ("Open Aviation" / "Solutions") regardless
+		   of column width, so the lockup matches the social card and the tagline
+		   can be width-matched to it. The accent span carries "Solutions". */
+		.title-row h1 :global(span) {
+			display: block;
 		}
 
 		h1 {
-			font-size: clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl));
+			font-size: var(--title-size);
 			line-height: var(--sl-line-height-headings);
 			font-weight: 600;
 			color: var(--sl-color-white);
@@ -128,12 +151,15 @@ if (image) {
 		.tagline {
 			font-size: clamp(var(--sl-text-base), calc(0.0625rem + 2vw), var(--sl-text-xl));
 			color: var(--sl-color-gray-2);
+			/* Left-align the wrapped lines on narrow screens (the wide-screen
+			   tagline is a single line, so this is a no-op there). */
+			text-align: start;
 		}
 
 		.actions {
 			gap: 1rem 2rem;
 			flex-wrap: wrap;
-			justify-content: center;
+			justify-content: flex-start;
 		}
 
 		@media (min-width: 50rem) {
@@ -141,6 +167,8 @@ if (image) {
 				grid-template-columns: 7fr 4fr;
 				gap: 3%;
 				padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
+				/* Larger lockup so the width-matched tagline lands around 18px. */
+				--title-size: clamp(4.25rem, calc(2rem + 3vw), 5rem);
 			}
 
 			.hero > img,
@@ -153,12 +181,18 @@ if (image) {
 				text-align: start;
 			}
 
-			.copy {
-				align-items: flex-start;
+			.title-row {
+				gap: 0.3em;
 			}
 
-			.actions {
-				justify-content: flex-start;
+			/* One line spanning the lockup's left edge to the wordmark's right
+			   edge. Both strings are fixed, so their widths scale linearly with
+			   font size: tagline = 0.254 x title holds the match at every width.
+			   Keep the 0.254 ratio in step with scripts/generate-og-image.mjs. */
+			.tagline {
+				font-size: calc(0.254 * var(--title-size));
+				max-width: none;
+				white-space: nowrap;
 			}
 		}
 	}
