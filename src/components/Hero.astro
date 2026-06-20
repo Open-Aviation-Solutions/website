@@ -108,10 +108,15 @@ if (image) {
 		}
 
 		.title-logo {
-			height: 2.05em;
+			/* The mark's ring spans the two-line wordmark: cap-top of "Open
+			   Aviation" sits on the ring's top edge, the "Solutions" baseline on
+			   its bottom edge. At the heading line-height (1.2) that span is
+			   ~1.92em; the small top nudge re-centres for the font's larger
+			   descent gap. Keep in step with scripts/generate-og-image.mjs. */
+			height: 1.92em;
 			width: auto;
 			flex-shrink: 0;
-			margin-top: 0.11em;
+			margin-top: 0.03em;
 		}
 
 		.title-row h1 {
