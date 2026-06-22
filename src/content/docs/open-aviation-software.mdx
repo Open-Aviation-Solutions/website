@@ -1,10 +1,36 @@
 ---
 title: Open Aviation Software
-description: Free, open-source software libraries for building aviation tooling — logbooks, competency tracking, and more.
+description: Free, open-source software libraries that model aircraft, pilots and flights against ICAO standards and national regulation — the shared foundation for logbooks, currency trackers and other aviation-related apps.
 ---
 
-This section is coming soon.
+Digital logbooks, training-and-currency trackers, flight-planning tools — almost every aviation-related application needs the same underlying plumbing. At their core, they all interact with the basic data of the aviation domain such as aircraft, flights, and pilots. Today each app reinvents that core from scratch, sometimes getting regulatory detail subtly wrong in the process.
 
-I'm building open-source software libraries for aviation tooling — things like logbook management and competency-based training administration. These will be free building blocks that make it cheaper to write custom software solutions for flight training organisations.
+I'm working on a foundation of **open-source libraries for aviation software**: the shared building blocks those apps need but shouldn't each have to write themselves.
 
-[Contact me](/contact/) if you'd like to be notified when these are available, or if you're interested in sponsoring their development.
+## A standards-based core
+
+At the centre is a small, standards-based core that models the things every aviation application talks about — **aircraft, pilots, and flights** — described in the international vocabulary defined by [ICAO](https://www.icao.int/). Using a shared, standards-based vocabulary means the same data means the same thing anywhere in the world: an aircraft type or a flight described by one app is understood the same way by the next.
+
+Around that core sit **country-specific layers**, starting with an Australian one built on [CASA's](https://www.casa.gov.au/) regulations. These add the national detail a real application actually needs — how a given aircraft maps to a licence category, what a particular pilot's currency allows them to fly — without polluting the international core with one country's rules. New countries can be added as their own layers over the same foundation.
+
+## Built as a faithful model of the real world
+
+The libraries are shaped by **Domain-Driven Design** and **Clean Architecture**. That standards-based core is, in DDD terms, a *shared kernel* — a carefully agreed slice of the domain model that every application depends on in common. The domain — the actual rules of aviation, drawn from ICAO standards and national regulation — sits at the heart of the code, insulated from databases, frameworks, and user interfaces. The software can then read as a faithful model of the real world without being buried in technical machinery.
+
+That structure does real work:
+
+- **The code stays understandable.** The domain knowledge is encoded explicitly and the boundaries between layers are clear, so the code is easier for humans to reason about and build upon.
+- **Human and AI collaboration stays productive.** Those same clear boundaries make the code easy to hand to a generative-AI assistant, which can contribute meaningfully within the well-drawn lines rather than blurring them. Clean architecture and Domain Driven Design turn out to be excellent fits for keeping that collaboration productive instead of accreting complexity.
+- **Apps interoperate cleanly.** When two apps build on the same core and refer to the same aircraft, pilots, and flights by shared identity, a logbook and a training system can describe the same flight without duplicating it or disagreeing about it.
+
+## Why it matters
+
+Anyone building an aviation product can start from **correct, regulation-aware building blocks** — getting the core of the domain modelling for free — and spend their effort on extending those with their own domain modelling for the specific context of their app, building on a common foundation that also guides towards a tried and true architecture.
+
+For organisations investing in aviation-related software development, that means custom software tooling becomes meaningfully cheaper and more reliable to build.
+
+## Status
+
+These libraries are in development and haven't been published yet. I want to demonstrate their usefulness with some example applications before publishing. When they are ready, they'll be free and open-source, with each repository carrying its own licence — see the [licensing page](/licensing/) for how that works across Open Aviation Solutions projects.
+
+[Contact me](/contact/) if you'd like to be notified when these are available, if you're building something that could use them, or if you're interested in sponsoring their development.
