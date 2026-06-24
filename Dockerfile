@@ -28,4 +28,17 @@ RUN arch="$(dpkg --print-architecture)" \
  && curl -sSfL "https://github.com/vale-cli/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_${valearch}.tar.gz" \
       | tar -xz -C /usr/local/bin vale
 
+# lychee: the link checker `make check-links` runs over the built site. The
+# statically linked musl build runs regardless of the base image's glibc
+# version. Keep LYCHEE_VERSION in sync with .github/workflows/link-check.yml.
+ARG LYCHEE_VERSION=0.24.2
+RUN arch="$(dpkg --print-architecture)" \
+ && case "$arch" in \
+      amd64) lycheearch="x86_64-unknown-linux-musl" ;; \
+      arm64) lycheearch="aarch64-unknown-linux-musl" ;; \
+      *) echo "unsupported architecture: $arch" >&2; exit 1 ;; \
+    esac \
+ && curl -sSfL "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/lychee-${lycheearch}.tar.gz" \
+      | tar -xz -C /usr/local/bin --strip-components=1 "lychee-${lycheearch}/lychee"
+
 WORKDIR /app

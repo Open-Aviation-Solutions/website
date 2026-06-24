@@ -1,4 +1,4 @@
-.PHONY: help dev build preview install test lint-prose check
+.PHONY: help dev build preview install test lint-prose check check-links
 
 # --- Toolchain selection ----------------------------------------------------
 #
@@ -34,12 +34,18 @@ TTY := $(shell [ -t 0 ] && echo -it)
 CONTAINER_RUN := $(CONTAINER_RUNTIME) run --rm $(TTY) -v $(CURDIR):/app $(CONTAINER_USER) -e ASTRO_HOST=1
 NPM := $(CONTAINER_RUN) $(IMAGE) npm
 VALE := $(CONTAINER_RUN) $(IMAGE) vale
+LYCHEE := $(CONTAINER_RUN) $(IMAGE) lychee
+# Absolute path lychee resolves root-relative links (/contact/) against. Inside
+# the container the repo is bind-mounted at /app.
+DIST_ROOT := /app/dist
 # Stamp file marking the last successful image build, so plain `make` runs only
 # rebuild the image when the Dockerfile is newer (no runtime call otherwise).
 IMAGE_STAMP := .image.stamp
 else
 NPM := npm
 VALE := vale
+LYCHEE := lychee
+DIST_ROOT := $(CURDIR)/dist
 endif
 
 help:
@@ -83,4 +89,7 @@ test: node_modules ## Run e2e tests (CI uses the Playwright image; locally needs
 lint-prose: $(IMAGE_STAMP) ## Spell- and style-check content with Vale
 	$(VALE) src/content/docs/
 
-check: lint-prose ## Run all checks
+check: lint-prose build ## Run all fast checks (prose + internal link validation)
+
+check-links: build ## Check internal AND external links over the network (lychee)
+	$(LYCHEE) --root-dir $(DIST_ROOT) './dist/**/*.html'

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from '@astrojs/sitemap';
 import remarkSmartypants from 'remark-smartypants';
 import { siteInfo, organizationJsonLd } from './src/site-info';
@@ -19,6 +20,10 @@ export default defineConfig({
 	},
 	integrations: [
 		starlight({
+			// Fail the build on broken internal links and missing heading anchors.
+			// External links are checked separately by `make check-links` (lychee),
+			// since they break for reasons outside this repo and need the network.
+			plugins: [starlightLinksValidator()],
 			customCss: ['./src/styles/custom.css'],
 			title: siteInfo.siteName,
 			components: {
