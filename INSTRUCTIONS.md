@@ -11,13 +11,35 @@ make build        # build to ./dist/
 make preview      # preview the built site locally
 make test         # run Playwright e2e tests (CI only — see memory)
 make lint-prose   # spell- and style-check content with Vale
-make check        # run all checks (currently lint-prose)
+make check        # fast checks: prose + build (build validates internal links)
+make check-links  # build, then check internal AND external links (lychee, network)
 ```
 
 Prose linting uses [Vale](https://vale.sh) with the `en_AU` Hunspell dictionary
 and a custom aviation vocabulary at `.vale/styles/config/vocabularies/Aviation/accept.txt`.
 Add new domain terms (acronyms, aircraft types, proper names) there rather than
 disabling rules. The same setup runs in CI on every push and PR.
+
+### Link checking
+
+Links are checked in two complementary ways:
+
+- **Internal links** are validated at build time by the
+  [`starlight-links-validator`](https://github.com/HiDeoo/starlight-links-validator)
+  plugin (configured in `astro.config.mjs`). A broken in-site link or missing
+  heading anchor fails `make build`, so it also fails `make check` and the CI
+  `check` job on every push and PR. This is fast and deterministic — no network.
+- **External links** (plus internal, for completeness) are checked by
+  [lychee](https://lychee.cli.rs) over the built `./dist` HTML via
+  `make check-links`. Because external links break for reasons outside this repo
+  and the network is flaky, this does *not* run on push/PR. CI runs it on a
+  weekly schedule and on demand (`.github/workflows/link-check.yml`,
+  `workflow_dispatch`); GitHub notifies the repo owner if a scheduled run fails.
+
+lychee's behaviour (retries, timeouts, accepted status codes, and known
+false-positive URLs such as LinkedIn's HTTP 999 bot block and the 404 page's
+self-canonical) is configured in `lychee.toml`. Add new false positives there
+rather than disabling the check.
 
 ### Running without a local Node toolchain
 
@@ -26,14 +48,17 @@ on the host:
 
 - If `npm` is on `PATH`, the Make targets run it directly.
 - If not, they fall back to a container built from `Dockerfile` (Node 24 plus
-  the Vale prose linter and the en_AU Hunspell dictionary `make check` needs).
-  The image is built automatically on first use. Either `podman` or `docker` is
-  detected; override with `CONTAINER_RUNTIME=docker` or force the container path
-  with `make dev USE_CONTAINER=1`.
+  the Vale prose linter and the en_AU Hunspell dictionary `make check` needs,
+  and the lychee link checker `make check-links` needs). The image is built
+  automatically on first use. Either `podman` or `docker` is detected; override
+  with `CONTAINER_RUNTIME=docker` or force the container path with
+  `make dev USE_CONTAINER=1`.
 
 The Vale version baked into the image (`VALE_VERSION` ARG in `Dockerfile`) is
 kept in sync with the `VALE_VERSION` env var in `.github/workflows/ci.yml`,
-which is how CI installs Vale on the runner directly.
+which is how CI installs Vale on the runner directly. Likewise the
+`LYCHEE_VERSION` ARG in `Dockerfile` is kept in sync with the `LYCHEE_VERSION`
+env var in `.github/workflows/link-check.yml`.
 
 The container bind-mounts the repo (so edits and `node_modules` live on the
 host as usual) and forwards the Astro dev/preview server on port **4321**

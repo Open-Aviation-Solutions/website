@@ -1,0 +1,35 @@
+# Configuration for the lychee link checker (`make check-links`).
+# Docs: https://lychee.cli.rs/usage/config/
+#
+# This runs over the built ./dist HTML, so it checks both the internal links
+# between pages and every outbound external URL. External sites are flaky and
+# rate-limit aggressively, so the settings below favour avoiding false failures.
+
+# Retry transient failures (timeouts, 5xx, rate limits) before giving up.
+max_retries = 3
+retry_wait_time = 2
+
+# Per-request timeout, in seconds — some authoritative sites (gov, CDNs) are slow.
+timeout = 30
+
+# Limit concurrency so we don't hammer any single host.
+max_concurrency = 8
+
+# Identify as a browser; a few hosts reject unknown or default user agents.
+user_agent = "Mozilla/5.0 (compatible; lychee link checker; +https://openaviation.solutions)"
+
+# 429 (Too Many Requests) means the link exists, we were just rate-limited.
+accept = ["200..=299", "429"]
+
+# mailto:/tel: links can't be checked over HTTP; lychee excludes them by default
+# (include_mail is false), so there's nothing to set here.
+
+# URLs (regex) to skip — each is a known false positive, not a broken link:
+exclude = [
+  # The 404 page's own canonical/og:url points at the live /404/ URL, which
+  # GitHub Pages serves with a 404 status by design.
+  '^https://openaviation\.solutions/404/?$',
+  # LinkedIn returns HTTP 999 to every non-browser client (bot protection),
+  # so its profile links can't be verified automatically.
+  '^https://www\.linkedin\.com/',
+]
