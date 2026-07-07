@@ -1,0 +1,107 @@
+---
+// Override of Starlight's PageTitle. On blog pages (under /news) the main
+// sidebar is replaced by starlight-blog's own, so we add a breadcrumb trail
+// back to the site. Reads only public route data, so it's upgrade-safe.
+// The `_top` id matches Starlight's PAGE_TITLE_ID (skip-link / TOC target).
+const { starlightRoute } = Astro.locals;
+const title = starlightRoute.entry.data.title;
+
+const pathname = Astro.url.pathname;
+const isBlog = pathname === '/news' || pathname.startsWith('/news/');
+const isBlogIndex = pathname === '/news' || pathname === '/news/';
+---
+
+{
+  isBlog && (
+    <nav class:list={['breadcrumbs', { 'is-blog-index': isBlogIndex }]} aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          {isBlogIndex ? <span aria-current="page">News</span> : <a href="/news/">News</a>}
+        </li>
+        {!isBlogIndex && (
+          <li>
+            <span aria-current="page">{title}</span>
+          </li>
+        )}
+      </ol>
+    </nav>
+  )
+}
+
+<h1 id="_top">{title}</h1>
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 0.5rem;
+  }
+
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  /* Decorative separator before every item except the first. */
+  .breadcrumbs li + li::before {
+    content: '\203a';
+    color: var(--sl-color-accent-high);
+  }
+
+  .breadcrumbs a {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--sl-color-accent-high);
+    text-decoration: underline;
+  }
+
+  .breadcrumbs [aria-current='page'] {
+    color: var(--sl-color-gray-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /*
+   * On the blog index, starlight-blog hides the whole first content panel (the
+   * one holding this title/breadcrumb) via `.content-panel:first-of-type`. When
+   * our index breadcrumb is present, re-show that panel but keep the redundant
+   * "News" heading hidden, leaving just the breadcrumb. The `:has()` guard means
+   * this only applies on the index — post pages keep their visible <h1>.
+   */
+  :global(.content-panel:first-of-type:has(.breadcrumbs.is-blog-index)) {
+    display: block;
+  }
+
+  .breadcrumbs.is-blog-index ~ h1 {
+    display: none;
+  }
+
+  @layer starlight.core {
+    h1 {
+      margin-top: 1rem;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 600;
+      color: var(--sl-color-white);
+    }
+  }
+</style>
