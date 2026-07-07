@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
+import starlightBlog from 'starlight-blog';
 import sitemap from '@astrojs/sitemap';
 import remarkSmartypants from 'remark-smartypants';
 import { siteInfo, organizationJsonLd } from './src/site-info';
@@ -23,13 +24,24 @@ export default defineConfig({
 			// Fail the build on broken internal links and missing heading anchors.
 			// External links are checked separately by `make check-links` (lychee),
 			// since they break for reasons outside this repo and need the network.
-			plugins: [starlightLinksValidator()],
+			plugins: [
+				starlightLinksValidator(),
+				starlightBlog({
+					// Mount the section at /news, with a "News" link at the end of
+					// the header (next to the theme/RSS controls). The News group is
+					// also added to the main sidebar below.
+					prefix: 'news',
+					title: 'News',
+					navigation: 'header-end',
+				}),
+			],
 			customCss: ['./src/styles/custom.css'],
 			title: siteInfo.siteName,
 			components: {
 				SiteTitle: './src/components/SiteTitle.astro',
 				Hero: './src/components/Hero.astro',
 				Footer: './src/components/Footer.astro',
+					PageTitle: './src/components/PageTitle.astro',
 			},
 			description: siteInfo.tagline,
 			head: [
@@ -64,7 +76,18 @@ export default defineConfig({
 				{ label: 'Open Aviation Software', slug: 'open-aviation-software' },
 				{ label: 'VR Simulator Setups', slug: 'vr-simulator-setups' },
 				{
+					label: 'News',
+					collapsed: true,
+					items: [
+						// Group labels can't be links in Starlight, so a first "All news"
+						// item links to the post index; the rest are the posts themselves.
+						{ label: 'All news', link: '/news/' },
+						{ autogenerate: { directory: 'news' } },
+					],
+				},
+				{
 					label: 'About',
+					collapsed: true,
 					items: [
 						{ label: 'About Open Aviation Solutions', slug: 'about' },
 						{ label: 'Licensing', slug: 'licensing' },

@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  /** How many recent posts to show. */
+  limit?: number;
+}
+
+const { limit = 3 } = Astro.props;
+
+// starlight-blog posts live under src/content/docs/news/ as part of the `docs`
+// collection. Pull the newest few (excluding drafts) for the homepage strip.
+const posts = (await getCollection('docs', (entry) => entry.id.startsWith('news/') && !entry.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, limit);
+
+const dateFormat = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+{
+  posts.length > 0 && (
+    <section class="latest-news" aria-labelledby="latest-news-heading">
+      <div class="heading-row">
+        <h2 id="latest-news-heading">Latest news</h2>
+        <a href="/news/" class="view-all">View all news</a>
+      </div>
+      <div class="news-grid">
+        {posts.map((post) => (
+          <article class="news-card">
+            <a href={`/${post.id}/`} aria-label={post.data.title} class="card-overlay-link" />
+            <time datetime={post.data.date.toISOString()}>{dateFormat.format(post.data.date)}</time>
+            <p class="title">{post.data.title}</p>
+            {post.data.excerpt && <p class="excerpt">{post.data.excerpt}</p>}
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .latest-news {
+    margin-block: clamp(1.5rem, calc(0.5rem + 3vw), 3rem);
+  }
+
+  .heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+  }
+
+  .heading-row h2 {
+    margin: 0;
+    font-size: var(--sl-text-h3);
+  }
+
+  .view-all {
+    font-size: var(--sl-text-sm);
+    white-space: nowrap;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .news-card {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background-color: var(--sl-color-black);
+    padding: clamp(1rem, calc(0.5rem + 1.5vw), 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    transition: border-color 120ms;
+  }
+
+  .news-card:hover {
+    border-color: var(--sl-color-accent);
+  }
+
+  /* Stretch the <a> to cover the whole card. */
+  .card-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 0.5rem;
+  }
+
+  .news-card time {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  .news-card .title {
+    font-weight: 600;
+    font-size: var(--sl-text-h5);
+    color: var(--sl-color-white);
+    line-height: var(--sl-line-height-headings);
+    margin: 0;
+  }
+
+  .news-card .excerpt {
+    margin: 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+</style>
