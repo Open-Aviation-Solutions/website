@@ -1,0 +1,68 @@
+---
+title: Helping learners understand the Four Forces that balance an aeroplane
+sidebar:
+  label: A new Four Forces component
+date: 2026-07-17
+excerpt: I've recently updated the interactive 3D aeroplane viewer where lift, weight, thrust and drag grow and shrink in real time as you fly it — free to embed in your own briefings or slides, so students can see how the forces interact rather than just name them.
+tags:
+  - components
+  - aerodynamics
+cardImage:
+  src: https://open-aviation-solutions.github.io/open-aviation-components/screenshots/four-forces.png
+  alt: Four Forces — a 3D aeroplane with labelled lift, weight, thrust and drag arrows and airspeed and climb gauges
+---
+
+I updated the [Four Forces
+component](https://open-aviation-solutions.github.io/open-aviation-components/four-forces/)
+interactive component this week - the 3D component that helps learners see the
+four forces balancing an aeroplane in flight in real-time.
+
+Here's a screenshot - click on it to view the actual 3D scene that you can manipulate and fly:
+
+<a href="https://open-aviation-solutions.github.io/open-aviation-components/four-forces/">
+  <img
+    src="https://open-aviation-solutions.github.io/open-aviation-components/screenshots/four-forces.png"
+    alt="Four Forces — a 3D aeroplane with labelled lift, weight, thrust and drag arrows and airspeed and climb gauges"
+    style="width: 100%; border-radius: 0.5rem; margin: 1.5rem 0;"
+  />
+</a>
+
+This component was actually the first one which I created at the start of the
+year, so it was fun to come back and see what I could improve (I need it for my
+next briefing on steep turns).
+
+## What I changed
+
+- I updated so the aeroplane itself is translucent by default, which allows...
+- Using the one true scale for all four forces (rather than exaggerating thrust
+  and drag as is done in most text books) - thrust is really only a fraction of
+the weight;
+- I enabled each arrow to start where its force actually acts - lift high in
+  the wing, thrust at the propeller etc., which also enables
+- grey lines extending those lines of actions into a *moment quadrilateral*
+  that becomes a neat rectangle in straight and level flight. This makes the
+pitching couples visible.
+
+You can brief straight and level flight, the climb, the glide, the stall and
+(with the banking control enabled) turns, all against the same aircraft. The
+speeds are configurable per aircraft — never-exceed, normal operating and stall
+speeds, plus a nominal cruise — so the gauges and 3D model can match the
+aeroplane your students actually fly.
+
+## Try it out
+
+Have a play with the [live Four Forces
+component](https://open-aviation-solutions.github.io/open-aviation-components/four-forces/)
+on the components site. That page also documents the attributes for pointing it
+at your own aircraft model and calibrating the speeds, so with a little bit of
+html/web skills you can tailor it to the type you brief most often. For an
+overview of the whole library, see [Open Aviation
+Components](/open-aviation-components/).
+
+And, like every Open Aviation Component, it's **free to embed anywhere** —
+your school's website, a web-based ground briefing, or a slide deck.
+Improvements to the component flow back to the community under the same
+[licence](/licensing/).
+
+If you build something with it, or have an idea for another component,
+[get in touch](/contact/) — I'd love to hear about it.
