@@ -32,4 +32,8 @@ exclude = [
   # LinkedIn returns HTTP 999 to every non-browser client (bot protection),
   # so its profile links can't be verified automatically.
   '^https://www\.linkedin\.com/',
+  # CASA's site sits behind a web application firewall (GovCMS, Signal
+  # Sciences) that resets requests from GitHub's runners ("HTTP/2 protocol
+  # error"), though the same URLs answer 200 from a browser or a home connection.
+  '^https://www\.casa\.gov\.au/',
 ]
